@@ -1,9 +1,9 @@
 import './App.css';
+import FloatBoxName from './Components/FloatBoxName'
 import MenuCommon from './Components/MenuCommon'
 import MenuVegetarian from './Components/MenuVegetarian'
 import SectionSalad from './Components/SectionSalad'
 import IconHamburg from './img/menuIcon.png'
-
 import styled from 'styled-components'
 
 
@@ -43,15 +43,24 @@ function App() {
     background-color: transparent;
     border-radius: 5px;
   `
+  var menu = 0;
+  const selectMenu = () =>{
+    if(menu == 0){
+      console.log('si')
+    }
+  }  
+
 return (
   <SectionHome className="App">
       <NavBar>
         <Button><img src={IconHamburg}/></Button>
         <Title>NombreApp</Title>
       </NavBar>
-      <MenuCommon />
-      <MenuVegetarian />
-      <SectionSalad />
+      <FloatBoxName />
+
+      <MenuCommon selectMenu={selectMenu} />
+      <MenuVegetarian selectMenu={selectMenu} />
+      <SectionSalad selectMenu={selectMenu} />
   </SectionHome>
 );
 }
