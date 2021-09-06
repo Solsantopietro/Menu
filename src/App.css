@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body {
+    background-image: url('./img/background.jpg'); 
+    background-position: center;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.common {
+    position: absolute;
+    left: 110px;
+    top: 200px;
+    z-index: 1000;
+}
+.veggie {
+    position: absolute;
+    left: 35px;
+    top: 330px;
+    z-index: 1000;
+
+}
+
+
+.salad {
+    position: absolute;
+    right: 35px;
+    top: 330px;
+    z-index: 1000;
+
+}
+
+.hidden{
+    display: none!important;
+}

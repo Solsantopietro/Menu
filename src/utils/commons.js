@@ -1,15 +1,16 @@
 import styled from 'styled-components'
 
 export const SectionMenu = styled.section`
-background-color: #ecf0f1;
+background-color: #ecf0f1b3;
 border-radius: 5px;
 margin: 5px;
 padding-bottom: 20px;
 `
-export const Title = styled.h1`
+export const Title = styled.h2`
 font-size: 20px;
 padding: 5px;
-color: #282c34;
+color: #ffff;
+font-weight: 100;
 height: 30px;
 border-radius: 5px;
 `
@@ -22,5 +23,5 @@ border-radius: 15px;
 color: #ecf0f1;
 background-color: #212835;
 margin-left: 150px;
-margin-top: 10px;
+margin-top: 20px;
 `

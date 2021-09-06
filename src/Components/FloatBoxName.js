@@ -1,38 +1,66 @@
 import { Title, Button } from '../utils/commons';
-import styled from 'styled-components'
-import { useState } from 'react';
+import '../App.css';
 
-function FloatBoxName(){
-  const [valueText, setValueText] = useState('');
+import styled from 'styled-components'
+import { useEffect, useState } from 'react';
+
+function FloatBoxName( {click, setClick} ) {
+
 
     const FloatBox = styled.section`
-    background-color: #ecf0f1;
+    position: absolute;
+    top: 200px;
+    height: 200px;
+    background-color: #212835a6;
     border-radius: 5px;
     margin: 5px;
     padding-bottom: 20px;
-    `    
-    const handleChange = (e) => {
-        e.preventDefault(e)
+    z-index: 10000;
 
-        setValueText(e.target.value)
-        console.log(valueText)
-    }
+    `
+
+    const InputText = styled.input`
+    color: white;
+    height: 30px;
+    background-color: transparent;
+
+    border-radius: 10px;
+    `
+    const [valueText, setValueText] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault(e)
-        handleChange(e)
-        console.log('hola')
+        setClick(click++)
+        hadleChange(e)
     }
 
- return(
-     <FloatBox className="FloatBoxName">
-        <Title>Cual es tu nombre?</Title>
-        <input type="text"
-            onChange={handleChange}
-            placeholder="                Nombre" />
-        <Button onClick={handleSubmit}>Aceptar</Button>
-     </FloatBox>
- );
+    const hadleChange = (e) => {
+        setValueText(e.target.value)
+        if (valueText === 'sol') {
+            console.log('es igual');
+            console.log(valueText)
+
+        } else {
+            console.log('nonon');
+            console.log(click)
+        }
+
+    }
+
+    return (
+        <div >
+            <FloatBox className={click >= 1 ? "hidden" : ""}>
+                <Title>Cual es tu nombre?</Title>
+                <form>
+                    <InputText type="text"
+                        onChange={hadleChange}
+                        placeholder="                Nombre" />
+                    <Button onClick={handleSubmit}>Aceptar</Button>
+                </form>
+            </FloatBox>
+        </div>
+
+    );
 }
 
 export default FloatBoxName;
