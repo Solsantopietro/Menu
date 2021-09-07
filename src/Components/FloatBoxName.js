@@ -1,10 +1,10 @@
 import { Title, Button } from '../utils/commons';
 import '../App.css';
-
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useEffect, useState } from 'react';
 
-function FloatBoxName( {click, setClick} ) {
+function FloatBoxName( {click, setClick, hiddenBoxName, setHiddenBoxName} ) {
 
 
     const FloatBox = styled.section`
@@ -16,6 +16,13 @@ function FloatBoxName( {click, setClick} ) {
     margin: 5px;
     padding-bottom: 20px;
     z-index: 10000;
+    h2 {
+        margin-top: 30px;
+    }
+    a {
+        text-decoration: none;
+        color: #fff;
+    }
 
     `
 
@@ -28,34 +35,40 @@ function FloatBoxName( {click, setClick} ) {
     `
     const [valueText, setValueText] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault(e)
-        setClick(click++)
-        hadleChange(e)
-    }
-
     const hadleChange = (e) => {
         setValueText(e.target.value)
         if (valueText === 'sol') {
             console.log('es igual');
             console.log(valueText)
-
+    
         } else {
             console.log('nonon');
             console.log(click)
         }
-
+    
     }
+    
+      const handleSubmit = (e) => {
+        e.preventDefault(e)
+        setClick(click++)
+        hadleChange(e)
+        if(click !== 0){
+            setHiddenBoxName('hidden')
+            console.log(hiddenBoxName)
+          }
+    }
+    
+
 
     return (
         <div >
-            <FloatBox className={click >= 1 ? "hidden" : ""}>
+            <FloatBox className={hiddenBoxName}>
                 <Title>Cual es tu nombre?</Title>
                 <form>
                     <InputText type="text"
                         onChange={hadleChange}
                         placeholder="                Nombre" />
-                    <Button onClick={handleSubmit}>Aceptar</Button>
+                    <Button onClick={handleSubmit}> <Link to={`/selectMenu`}>Aceptar</Link></Button>
                 </form>
             </FloatBox>
         </div>

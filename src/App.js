@@ -1,15 +1,13 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import FloatBoxName from './Components/FloatBoxName'
 import MenuCommon from './Components/MenuCommon'
 import MenuVegetarian from './Components/MenuVegetarian'
 import SectionSalad from './Components/SectionSalad'
-import IconHamburg from './img/menuIcon.png'
-import IconVeggie from './img/veggieIcon.png'
-import noPork from './img/noPork.png'
-
-import IconCommon from './img/commonIcon.png'
-import IconSalad from './img/saladIcon.png'
+import IconHamburg from './img/icons/menuIcon.png'
+import SelectMenu from './Components/SelectMenu'
+import Dessert from './Components/Dessert'
 
 import styled from 'styled-components'
 
@@ -51,31 +49,18 @@ function App() {
     background-color: transparent;
     border-radius: 5px;
   `
-  const ButtonMenu = styled.button`
-  font-family: 'Roboto', sans-serif;
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
-  align-items: center;
-   height: 140px;
-    width: 140px;
-    font-weight: 600;
-    border-color: none;
-    color: #ffff;
-    background-color: #212835a6;
-    border-radius: 70px;
-  `
-  var menu = 0;
-  const selectMenu = () =>{
-    if(menu == 0){
-      console.log('si')
-    }
-  }
+
 
   // const [valueText, setValueText] = useState('');
   var [click, setClick] = useState(0);
+  var [hiddenBoxName, setHiddenBoxName] = useState('');
 
+
+  useEffect(() => {
+console.log(hiddenBoxName)
+  },[click]);
  
+
 
 return (
   <SectionHome className="App">
@@ -83,16 +68,23 @@ return (
         <Button><img src={IconHamburg}/></Button>
         <Title>MorfApp</Title>
       </NavBar>
-      <FloatBoxName click={click} setClick={setClick}/>
 
-      {/* <MenuCommon selectMenu={selectMenu} />
-      <MenuVegetarian selectMenu={selectMenu} />
-      <SectionSalad selectMenu={selectMenu} /> */}
-    
-      <ButtonMenu className={click === 0 ? "hidden" : "common"}><img src={IconCommon}/>Comun</ButtonMenu>
-      <ButtonMenu className={click === 0 ? "hidden" : "veggie"} ><img src={IconVeggie}/>Veggie</ButtonMenu>
-      <ButtonMenu className={click === 0 ? "hidden" : "salad"}><img src={IconSalad}/>Ensaladas</ButtonMenu>
+      {/* <MenuCommon selectMenu={selectMenu} /> */}
+      {/* <MenuVegetarian selectMenu={selectMenu} /> */}
+      {/* <SectionSalad selectMenu={selectMenu} /> */}
+      <BrowserRouter>
+      <FloatBoxName hiddenBoxName={hiddenBoxName} setHiddenBoxName={setHiddenBoxName} click={click} setClick={setClick}/>
+        <Switch>
+                <Route exact path="/" component={FloatBoxName} />
+                <Route exact path="/selectMenu" component={SelectMenu} />
+                <Route exact path="/comun" component={MenuCommon} />
+                <Route exact path="/postre" component={Dessert} />
 
+                <Route exact path="/veggie" component={MenuVegetarian} />
+                <Route exact path="/ensaladas" component={SectionSalad} />
+        </ Switch>
+
+      </BrowserRouter>
 
   </SectionHome>
 );

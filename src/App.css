@@ -12,12 +12,20 @@ body {
     left: 110px;
     top: 200px;
     z-index: 1000;
+   
 }
+
+.common  a {
+    color: #fff;
+    }
+
+
 .veggie {
     position: absolute;
     left: 35px;
     top: 330px;
     z-index: 1000;
+    
 
 }
 
@@ -27,6 +35,7 @@ body {
     right: 35px;
     top: 330px;
     z-index: 1000;
+    
 
 }
 
