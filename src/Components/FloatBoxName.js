@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useEffect, useState } from 'react';
 
-function FloatBoxName( {click, setClick, hiddenBoxName, setHiddenBoxName} ) {
+function FloatBoxName() {
+    
+    var [click, setClick] = useState(0);
+    var [hiddenBoxName, setHiddenBoxName] = useState('');
+    const [valueText, setValueText] = useState('');
 
-
-    const FloatBox = styled.section`
+    const FloatBox = styled.section `
     position: absolute;
     top: 200px;
     height: 200px;
@@ -16,49 +19,40 @@ function FloatBoxName( {click, setClick, hiddenBoxName, setHiddenBoxName} ) {
     margin: 5px;
     padding-bottom: 20px;
     z-index: 10000;
-    h2 {
-        margin-top: 30px;
-    }
     a {
         text-decoration: none;
         color: #fff;
     }
-
     `
-
-    const InputText = styled.input`
+    const InputText = styled.input `
+    margin: 2px;
     color: white;
     height: 30px;
     background-color: transparent;
-
     border-radius: 10px;
     `
-    const [valueText, setValueText] = useState('');
-
     const hadleChange = (e) => {
         setValueText(e.target.value)
         if (valueText === 'sol') {
             console.log('es igual');
             console.log(valueText)
-    
+
         } else {
             console.log('nonon');
             console.log(click)
         }
-    
+
     }
-    
-      const handleSubmit = (e) => {
+
+    const handleSubmit = (e) => {
         e.preventDefault(e)
         setClick(click++)
         hadleChange(e)
-        if(click !== 0){
+        if (click !== 0) {
             setHiddenBoxName('hidden')
             console.log(hiddenBoxName)
-          }
+        }
     }
-    
-
 
     return (
         <div >
@@ -68,6 +62,9 @@ function FloatBoxName( {click, setClick, hiddenBoxName, setHiddenBoxName} ) {
                     <InputText type="text"
                         onChange={hadleChange}
                         placeholder="                Nombre" />
+                    <InputText type="text"
+                        onChange={hadleChange}
+                        placeholder="         Contrasenia kpo" />
                     <Button onClick={handleSubmit}> <Link to={`/selectMenu`}>Aceptar</Link></Button>
                 </form>
             </FloatBox>
